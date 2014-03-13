@@ -245,11 +245,12 @@ var _ = { };
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
     //iterate through arguments and send to _each to iterate over all properties
-    for(var i = 1; i < arguments.length; i++){
-      _.each(arguments[i], function(value, key, collection){
+    var args = Array.prototype.slice.call(arguments);
+    _.each(args.slice(1), function(object, index, collection){
+      _.each(object, function(value, key, collection){
         obj[key] = value;
       });
-    }
+    });
     return obj;
   };
 
