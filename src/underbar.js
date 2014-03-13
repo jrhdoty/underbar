@@ -256,11 +256,13 @@ var _ = { };
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
-        for(var i = 1; i < arguments.length; i++){
-      _.each(arguments[i], function(value, key, collection){
+    //convert arguments object to an array
+    var args = Array.prototype.slice.call(arguments);
+    _.each(args.slice(1), function(object, index, collection){
+        _.each(object, function(value, key, collection){
         obj[key] =  obj[key] === undefined ? value: obj[key];
       });
-    }
+    });
     return obj;
   };
 
@@ -365,6 +367,9 @@ var _ = { };
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
+    var sortedValues = [];
+
+    
   };
 
   // Zip together two or more arrays with elements of the same index
@@ -373,6 +378,7 @@ var _ = { };
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
