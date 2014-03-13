@@ -89,11 +89,13 @@ var _ = { };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var uniqueValues = {};
     var result = [];
-
     _.each(array, function(value, key){
-      if (_.indexOf(result, value) === -1){
+      //console.log("Value: " + value + "  Key: " + key);
+      if (!(uniqueValues.hasOwnProperty(value))){
         result.push(value);
+        uniqueValues[value] = true;
       }
     });
     return result;
@@ -327,7 +329,6 @@ var _ = { };
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
     var args = Array.prototype.slice.call(arguments, 2);
-    console.log("Args are: ", args);
     setTimeout(function(){return func.apply(this, args);}, wait);
   };
 
